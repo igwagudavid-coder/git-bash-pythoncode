@@ -5,6 +5,6 @@ while True:
     song_info = {"artist":artist,"song":song}
     hits.append(song_info)
     choice = (input("Would you like to add another song? (y/n): ")).lower()
-    if  choice != "y" or choice != "yes":
+    if  choice == "n" or choice == "no":
         break
 print(f"Your best hits are {hits}")

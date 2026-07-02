@@ -7,5 +7,5 @@ def reverseList(arr):
         source_id-=1
         i+=1
     return reverse    
-name = "ezichi" 
+name = list(input("Enter list to be reversed"))
 print(reverseList(name))

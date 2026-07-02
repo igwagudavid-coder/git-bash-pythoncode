@@ -1,8 +1,9 @@
 import json
+
 tasks = []
 
+
 def main():
-    
     while True:
         print("\n===TASK MANAGER===")
         print("1. Add a task")
@@ -11,69 +12,78 @@ def main():
         print("4. Mark a task done")
         print("5. Save tasks for later in a JSON file")
         print("0. Quit")
+        tasks_number = len(tasks)
         choice = input("choose an option: ")
         if choice == "1":
             print("(Add a task here)")
             addTask()
-            
+
         if choice == "4":
-            t_num = int(input("What task have you completed?: ")) - 1 
-            markDone(t_num)
+            t_num = int(input("What task have you completed?: ")) - 1
+            markDone(tasks_number,t_num)
 
         if choice == "5":
-            saveTasks()
-
+            saveTasks(tasks_number)
 
         if choice == "3":
             t_num = int(input("What task number do you want to delete?: ")) - 1
-            deleteTask(t_num)
+            deleteTask(tasks_number,t_num)
 
         if choice == "0":
             print("Goodbye!")
             break
-            
+
         if choice == "2":
             print("(View tasks here)")
-            viewTask()
-            
-
+            viewTask(tasks_number)
 
 
 def addTask():
     task = input("Add task: ")
-    status = "Complete" if(input("Have you completed the task? (y/n): ").lower()) =="y" else "Incomplete"
-    new_task = {"name": task, "status":status}
+    status = "Complete" if (input("Have you completed the task? (y/n): ").lower()) == "y" else "Incomplete"
+    new_task = {"name": task, "status": status}
     tasks.append(new_task)
-    
 
 
-def viewTask():
-    choice2 = int(input("Do you want to (1) View all tasks or (2) View a specific task: "))
-    if  not tasks:
-        print("Task list is empty!")
-
-    else:
+def viewTask(t_no):
+    hastask = checkForTask(t_no)
+    if hastask:
+        choice2 = int(input("Do you want to (1) View all tasks or (2) View specific task?"))
         if choice2 == 2:
-            t_num = int(input("What task number do you want to view?: "))
-            print(tasks[t_num-1])
-
-        else:
+            t_toview = int(input("What task number would you specifically like to view?"))
+            print(tasks[t_toview])
+        else :
             print(tasks)
 
 
-def deleteTask(t_num):
-    del  tasks[t_num]
-
-def markDone(t_num):
-    tasks[t_num]["status"] = "Completed"
-
-def saveTasks() :
-    confirm = input("Are you sure you want to save all tasks? (y/n): ")
-    if confirm.lower()== "y" or confirm.lower()== "yes":
-        with open("tasks.json", "w", encoding = "utf-8") as outfile:
-            json.dump(tasks, outfile, indent =4)
-        print("Tasks saved to directory folder in \"tasks.json\"")
+def deleteTask(t_no,t_num):
+    hastask = checkForTask(t_no)
+    if hastask:
+        del tasks[t_num]
 
 
+def markDone(t_no,t_num):
+    hastask = checkForTask(t_no)
+    if hastask:
+        tasks[t_num]["status"] = "Completed"
 
-main()            
+
+def checkForTask(tasks_no):
+    if tasks_no == 0:
+        print("Task list is empty!")
+        return False
+    else:
+        return True
+
+
+def saveTasks(t_no):
+    hastask = checkForTask(t_no)
+    if hastask:
+        confirm = input("Are you sure you want to save all tasks? (y/n): ")
+        if confirm.lower() == "y" or confirm.lower() == "yes":
+            with open("tasks.json", "w", encoding="utf-8") as outfile:
+                json.dump(tasks, outfile, indent=4)
+            print("Tasks saved to directory folder in \"tasks.json\"")
+
+
+main()

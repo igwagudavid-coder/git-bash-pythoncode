@@ -1,3 +1,4 @@
+import random
 def reverseList(arr):
     reverse = []
     source_id = -1
@@ -7,5 +8,10 @@ def reverseList(arr):
         source_id-=1
         i+=1
     return reverse    
-name = list(input("Enter list to be reversed"))
+name = []
+for i in range(0,1000000):
+    new = random.randint(0,100000)
+    name.append(new)
+print(name)
 print(reverseList(name))
+

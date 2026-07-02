@@ -1,3 +1,4 @@
+import json
 students = []
 while True:
     std_name = input("Enter Student name: ")
@@ -9,4 +10,5 @@ while True:
     choice = input("Do you want to end?: ")
     if choice =="yes":
         break
-print(students[0].get("id"))
+with open("students.json", "w") as file:
+    json.dump(students, file)

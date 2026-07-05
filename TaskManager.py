@@ -48,7 +48,7 @@ def addTask():
 def viewTask(t_no):
     hastask = checkForTask(t_no)
     if hastask:
-        choice2 = int(input("Do you want to (1) View all tasks or (2) View specific task?"))
+        choice2 = int(input("Do you want to (1) View all tasks or (2) View specific task?"[0]))
         if choice2 == 2:
             t_toview = int(input("What task number would you specifically like to view?"))
             print(tasks[t_toview])
@@ -79,11 +79,29 @@ def checkForTask(tasks_no):
 def saveTasks(t_no):
     hastask = checkForTask(t_no)
     if hastask:
-        confirm = input("Are you sure you want to save all tasks? (y/n): ")
-        if confirm.lower() == "y" or confirm.lower() == "yes":
+        confirm = input("Are you sure you want to save all tasks? (y/n): ")[0]
+        if confirm.lower() == "y":
             with open("tasks.json", "w", encoding="utf-8") as outfile:
                 json.dump(tasks, outfile, indent=4)
             print("Tasks saved to directory folder in \"tasks.json\"")
 
+#We're making the users data set to be a nested dictionary that has Usernames as the initial key and the nested dictionary data set as it's assigned "value" pair
+users = {"Ezichi":{"password":"Igwagu","reg_no":"242120177"}, "Chidera": {"password":"Igwagu","reg_no":""} }
+def auth_user(users):
+    user_name= input("Enter your username: ")
+    pass_word = input("Enter your password: ")
+    if user_name in users:
+        if pass_word == users[user_name]["password"]:
+            return True
+        else:
+            raise ValueError("Wrong username or password!")
+            return False
 
-main()
+    print("Username not found!")
+    return False
+
+try:
+    if auth_user(users):
+        main()
+except:
+    print("Wrong username or password, try again!")

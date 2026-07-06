@@ -1,5 +1,5 @@
 import json
-
+import students
 tasks = []
 
 
@@ -86,22 +86,31 @@ def saveTasks(t_no):
             print("Tasks saved to directory folder in \"tasks.json\"")
 
 #We're making the users data set to be a nested dictionary that has Usernames as the initial key and the nested dictionary data set as it's assigned "value" pair
-users = {"Ezichi":{"password":"Igwagu","reg_no":"242120177"}, "Chidera": {"password":"Igwagu","reg_no":""} }
+
+
 def auth_user(users):
-    user_name= input("Enter your username: ")
-    pass_word = input("Enter your password: ")
-    if user_name in users:
-        if pass_word == users[user_name]["password"]:
-            return True
-        else:
-            raise ValueError("Wrong username or password!")
-            return False
+   print("---Verification sign-in---")
+   id = input("Enter registered student id: ")
+   password = input("Enter password: ")
+   if id in users:
+       std_obj = users[id]
+       pwd = std_obj.password
+       if password == pwd:
+           print("----Login successful, Welcome----")
+           return True
+       else:
+           print("Incorrect password!")
+           return False
+   print("Username not found!")
+   return False
 
-    print("Username not found!")
-    return False
 
-try:
-    if auth_user(users):
+if __name__ == "__main__":
+    students.addStudent()
+    registered_users = students.students
+    if auth_user(registered_users):
         main()
-except:
-    print("Wrong username or password, try again!")
+    else:
+        print("Access Denied!")
+        raise ValueError("Incorrect username or password!!!")
+

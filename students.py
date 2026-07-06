@@ -1,14 +1,30 @@
-import json
-students = []
-while True:
-    std_name = input("Enter Student name: ")
-    std_id = input("Enter student ID: ")
-    std_age = input("Enter your age: ")
-    std_data = {"name":std_name, "id":std_id , "age": std_age}
+class Student:
+    def __init__(self, name, password):
+        self.name = name
+        self.password = password
+        #self.grades = grades
 
-    students.append(std_data)
-    choice = input("Do you want to end?: ")
-    if choice =="yes":
-        break
-with open("students.json", "w") as file:
-    json.dump(students, file)
+
+students = {}
+
+
+def addStudent():
+    while True:
+        id = input("Enter student id (\"quit\" to quit): ").strip()
+        if id.lower() == "quit":
+            break
+        name = input("Enter student username: ").strip()
+        password = input("Enter student password: ")
+        """ grades_input = input("Enter grades separated by \",\": ").strip().split(",")
+        grades = [int(g.strip()) for g in grades_input if g.strip().isdigit() and int(g.strip()) <= 100]"""
+        student = Student(name, password)
+        students[id] = student
+        print(student.grades)
+
+if __name__ == "__main__":
+    addStudent()
+    print(students)
+
+
+
+

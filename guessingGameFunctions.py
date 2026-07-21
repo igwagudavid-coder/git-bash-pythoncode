@@ -14,6 +14,7 @@ def pick_level():
 
     else: print("\nWrong input!")
 
+
 def checkGuess(number,guess)-> bool:
     if guess == number:
         return True
@@ -23,6 +24,17 @@ def checkGuess(number,guess)-> bool:
     elif guess < number:
         print("\nToo low, guess again")
         return False
+
+
+def loseCheck(number, attempts):
+    if attempts>0 :
+        print(f"\nYou have {attempts} guesses left! ")
+    else:
+        print("\n\nYou lose!!!")
+        print(f"\nThe number was {number}")
+        print(lose_logo)
+
+
 win_logo = r"""
                                                                       .           
                                                                     .o8           
@@ -34,6 +46,8 @@ win_logo = r"""
                                     d"     YD                                     
                                     "Y88888P'                                     
     """
+
+
 lose_logo = r"""
 oooo                                                          .o. .o. .o.
 `888                                                          888 888 888
@@ -43,6 +57,8 @@ oooo                                                          .o. .o. .o.
  888  888   888 o.  )88b 888    .o  888      888      888     .o. .o. .o.
 o888o `Y8bod8P' 8""888P' `Y8bod8P' d888b    d888b    d888b    Y8P Y8P Y8P
 """
+
+
 welcome_logo = r"""
 __        __   _                            _ _ _ 
 \ \      / /__| | ___ ___  _ __ ___   ___  | | | |

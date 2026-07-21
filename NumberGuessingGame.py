@@ -15,14 +15,7 @@ def main():
             print(guessingGameFunctions.win_logo)
             break
         attempts -=1
-        if attempts>0 :
-
-
-            print(f"\nYou have {attempts} guesses left! ")
-        else:
-            print("\n\nYou lose!!!")
-            print(f"\nThe number was {number}")
-            print(guessingGameFunctions.lose_logo)
+        guessingGameFunctions.loseCheck(number , attempts)
 
 
 if __name__ == "__main__":

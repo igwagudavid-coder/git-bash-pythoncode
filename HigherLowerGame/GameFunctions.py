@@ -38,6 +38,7 @@ class GameFunctions:
                 else:
                     return False
             case _:
+                print("Wrong input entered!")
                 return False
 
 

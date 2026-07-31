@@ -374,5 +374,5 @@ game_data = [
     {"name": "Kobe Bryant (Legacy)", "profession": "Basketball Icon", "country": "United States", "followers": 21500000},
     {"name": "Novak Djokovic", "profession": "Tennis Player", "country": "Serbia", "followers": 15200000}
 ]
-higher_logo =
-lower_logo =
+higher_logo  = None
+lower_logo =None

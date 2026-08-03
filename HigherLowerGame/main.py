@@ -3,6 +3,7 @@ from GameFunctions import GameFunctions
 
 
 def main():
+    print(GameFunctions.logos[0])
     num = GameFunctions.total_number
     score =0
     a = randint(0,num)
@@ -27,17 +28,24 @@ def main():
                       f"\nCountry: {slot_b["country"]}\n"
                         f"\n\n Is A. 1. > 2. < or 3. = ")
 
-        greater_number =GameFunctions.guessChecker(func,slot_a, slot_b,guess)
+        greater_number = GameFunctions.guessChecker(func, slot_a, slot_b, guess)
+
         if greater_number:
+            print(GameFunctions.logos[3])
             score +=1
             new_numbers =GameFunctions.nextNumberGenerator(func,a,b,greater_number)
             a = new_numbers[0]
             b = new_numbers[1]
         else:
+            print(GameFunctions.logos[4])
+
+            print(f"You had {score} guesses right!")
+            if score ==0:
+                print(GameFunctions.logos[-1])
             break
 
 
-    print(f"You had {score} guesses right!")
+
 
 
 if __name__ =="__main__":

@@ -1,10 +1,13 @@
-from data import game_data
+from data import game_data,logos
 from random import randint
 class GameFunctions:
+    logos= logos
     total_number = len(game_data) -1
     def __init__(self):
         self.total_number= len(game_data)-1
         self.previous_indices =[]
+        self.logos = logos
+
     def fetchData(self,a,b):
         if a not in self.previous_indices:
             self.previous_indices.append(a)
@@ -38,7 +41,7 @@ class GameFunctions:
                 else:
                     return False
             case _:
-                print("Wrong input entered!")
+                raise ValueError("Wrong input entered!")
                 return False
 
 
@@ -63,4 +66,8 @@ class GameFunctions:
 
         return [new_a, new_b]
 
+
+    def gameEnd(self, score):
+        if score== 0:
+            print()
 

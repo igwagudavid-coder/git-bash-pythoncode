@@ -40,10 +40,10 @@ def main():
             print(GameFunctions.logos[4])
 
             print(f"You had {score} guesses right!")
-            if score ==0:
-                print(GameFunctions.logos[-1])
+            GameFunctions.gameEnd(func,score)
             break
-
+    choice = input("Would you like to  check some follower data (Y/N)? ")
+    GameFunctions.dataChecker(func, choice)
 
 
 

@@ -24,13 +24,17 @@ class GameFunctions:
 
         match guess:
             case "1" | ">"|"a":
+                print(self.logos[1])
                 if slot_a["followers"] > slot_b["followers"]:
+
                     return 1
                 else:
                     return False
 
             case "2" | "<"|"b":
+                print(self.logos[2])
                 if slot_a["followers"] < slot_b["followers"]:
+
                     return 2
                 else:
                      return False
@@ -42,7 +46,7 @@ class GameFunctions:
                     return False
             case _:
                 raise ValueError("Wrong input entered!")
-                return False
+
 
 
 
@@ -69,5 +73,18 @@ class GameFunctions:
 
     def gameEnd(self, score):
         if score== 0:
-            print()
+            print(self.logos[-1])
 
+    def dataChecker(self, choice):
+        for i in range(5):
+            if choice.lower() == "yes" or choice.lower() == "y":
+                index = int(input("What number account would you want to see (you have a maximum of 5 accounts)? "))
+                data = game_data[index]
+                print(f"Name: {data["name"]}"
+                      f"\nProfession: {data["profession"]}"
+                      f"\nCountry: {data["country"]}"
+                      f"\nFollowers: {data['followers']}"
+                      )
+            else:
+                break
+            choice = input("Would you like to check another one (Y/N)? ")

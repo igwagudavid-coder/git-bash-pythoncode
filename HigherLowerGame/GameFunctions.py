@@ -76,15 +76,19 @@ class GameFunctions:
             print(self.logos[-1])
 
     def dataChecker(self, choice):
+        checks =0
         for i in range(5):
             if choice.lower() == "yes" or choice.lower() == "y":
-                index = int(input("What number account would you want to see (you have a maximum of 5 accounts)? "))
+                index = int(input(f"What number account would you want to see (you have a maximum of {5-checks} accounts)? "))
                 data = game_data[index]
                 print(f"Name: {data["name"]}"
                       f"\nProfession: {data["profession"]}"
                       f"\nCountry: {data["country"]}"
                       f"\nFollowers: {data['followers']}"
                       )
+                checks +=1
             else:
                 break
-            choice = input("Would you like to check another one (Y/N)? ")
+
+            if checks <5:
+                choice = input("Would you like to check another one (Y/N)? ")

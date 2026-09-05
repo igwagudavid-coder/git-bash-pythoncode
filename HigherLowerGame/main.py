@@ -1,6 +1,6 @@
 from random import randint
 from GameFunctions import GameFunctions
-
+from formatter import accountFormatter
 
 def main():
     game = GameFunctions()
@@ -19,16 +19,11 @@ def main():
         data = game.fetchData(a,b)
         slot_a = data[0]
         slot_b = data[1]
-        guess = input(f"A. \n"
-                      f"Name: {slot_a["name"]}"
-                      f"\nProfession: {slot_a["profession"]}"
-                      f"\nCountry: {slot_a["country"]}\n"
-                      f"\nand B.\n"
-                      f"Name: {slot_b["name"]}"
-                      f"\nProfession: {slot_b["profession"]}"
-                      f"\nCountry: {slot_b["country"]}\n"
-                        f"\n\n Is A: \n1. {game.logos[1]} \n2. {game.logos[2]} \nor 3. = : ")
-
+        print("--------A--------")
+        accountFormatter(slot_a)
+        print("--------B--------")
+        accountFormatter(slot_b)
+        guess = input("is A: 1. higher(>),  2. lower(<), 3.Equal(=) ")
         greater_number = game.guessChecker( slot_a, slot_b, guess)
 
         if greater_number:

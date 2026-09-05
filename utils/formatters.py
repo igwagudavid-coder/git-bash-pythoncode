@@ -11,7 +11,7 @@ def city_formatter(city_data:CityData):
 
 def weather_formatter(weather_data:WeatherData):
     print("\n\n--------Weather data--------\n")
-    #print(f"Time: {weather_data.time}")
+    print(f"Time: {weather_data.time}")
     print(f"Temperature: {weather_data.temperature}")
     print(f"Relative Humidity: {weather_data.relative_humidity}")
     print(f"Wind Speed: {weather_data.wind_speed}")

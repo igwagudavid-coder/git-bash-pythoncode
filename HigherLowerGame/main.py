@@ -3,19 +3,20 @@ from GameFunctions import GameFunctions
 
 
 def main():
-    print(GameFunctions.logos[0])
-    num = GameFunctions.total_number
+    game = GameFunctions()
+    print(game.logos[0])
+    num = game.total_number
     score =0
     a = randint(0,num)
     b = randint(0,num)
     while a==b:
         b = randint(0,num)
 
-    func = GameFunctions()
+
 
     while True:
 
-        data = GameFunctions.fetchData(func,a,b)
+        data = game.fetchData(a,b)
         slot_a = data[0]
         slot_b = data[1]
         guess = input(f"A. \n"
@@ -26,24 +27,24 @@ def main():
                       f"Name: {slot_b["name"]}"
                       f"\nProfession: {slot_b["profession"]}"
                       f"\nCountry: {slot_b["country"]}\n"
-                        f"\n\n Is A. 1. > 2. < or 3. = ")
+                        f"\n\n Is A: \n1. {game.logos[1]} \n2. {game.logos[2]} \nor 3. = : ")
 
-        greater_number = GameFunctions.guessChecker(func, slot_a, slot_b, guess)
+        greater_number = game.guessChecker( slot_a, slot_b, guess)
 
         if greater_number:
-            print(GameFunctions.logos[3])
+            print(game.logos[3])
             score +=1
-            new_numbers =GameFunctions.nextNumberGenerator(func,a,b,greater_number)
+            new_numbers =game.nextNumberGenerator(a,b,greater_number)
             a = new_numbers[0]
             b = new_numbers[1]
         else:
-            print(GameFunctions.logos[4])
+            print(game.logos[4])
 
             print(f"You had {score} guesses right!")
-            GameFunctions.gameEnd(func,score)
+            game.gameEnd(score)
             break
     choice = input("Would you like to  check some follower data (Y/N)? ")
-    GameFunctions.dataChecker(func, choice)
+    game.dataChecker( choice)
 
 
 

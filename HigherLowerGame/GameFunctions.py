@@ -1,12 +1,14 @@
-from data import game_data,logos
+import json
 from random import randint
 class GameFunctions:
-    logos= logos
-    total_number = len(game_data) -1
+
     def __init__(self):
-        self.total_number= len(game_data)-1
+        with open("game_data.json", "r") as file:
+            self.game_data= json.load(file)
+        self.total_number= len(self.game_data)-1
         self.previous_indices =[]
-        self.logos = logos
+        with open("logos.json", "r") as file:
+            self.logos = json.load(file)
 
     def fetchData(self,a,b):
         if a not in self.previous_indices:
@@ -14,7 +16,7 @@ class GameFunctions:
         if b not in self.previous_indices:
             self.previous_indices.append(b)
 
-        guess_data = [game_data[a], game_data[b]]
+        guess_data = [self.game_data[a], self.game_data[b]]
 
         return guess_data
 
@@ -80,7 +82,7 @@ class GameFunctions:
         for i in range(5):
             if choice.lower() == "yes" or choice.lower() == "y":
                 index = int(input(f"What number account would you want to see (you have a maximum of {5-checks} accounts)? "))
-                data = game_data[index]
+                data = self.game_data[index]
                 print(f"Name: {data["name"]}"
                       f"\nProfession: {data["profession"]}"
                       f"\nCountry: {data["country"]}"
@@ -92,3 +94,4 @@ class GameFunctions:
 
             if checks <5:
                 choice = input("Would you like to check another one (Y/N)? ")
+

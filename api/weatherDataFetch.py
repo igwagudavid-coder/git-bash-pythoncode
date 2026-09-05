@@ -36,9 +36,6 @@ class WeatherDataFetch():
             data = response.json()
         except ConnectionError as e:
             print(f"Weather fetching failed: {e}")
-            choice = input("Do you want to continue (y/n)?")
-            if choice == "y":
-                self.fetchWeather()
             raise ConnectionError("Couldn't connect the weather service (bad internet connection).{Weather Data Fetch}")
 
         except Timeout as e:
